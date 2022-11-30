@@ -7,7 +7,7 @@ function Footer() {
       <div className='grid grid-cols-2 md:grid-cols-6 gap-[30px] '>
 
         <div>
-          <h3 className='mb-[20px]'>Product</h3>
+          <h3 className='mb-[20px] font-extrabold'>Product</h3>
           <ul className='flex flex-col gap-[15px] text-sm'>
             <li>Overview</li>
             <li>Features</li>
@@ -19,7 +19,7 @@ function Footer() {
 
         </div>
         <div>
-        <h3 className='mb-[20px]'>Company</h3>
+        <h3 className='mb-[20px] font-extrabold'>Company</h3>
           <ul className='flex flex-col gap-[15px] text-sm'>
             <li>About us</li>
             <li>Careers</li>
@@ -30,7 +30,7 @@ function Footer() {
           </ul>
         </div>
         <div>
-        <h3 className='mb-[20px]'>Resources</h3>
+        <h3 className='mb-[20px] font-extrabold'>Resources</h3>
           <ul className='flex flex-col gap-[15px] text-sm'>
             <li>Blog</li>
             <li>NewsLetter</li>
@@ -41,7 +41,7 @@ function Footer() {
           </ul>
         </div>
         <div>
-        <h3 className='mb-[20px]'>Use cases</h3>
+        <h3 className='mb-[20px] font-extrabold'>Use cases</h3>
           <ul className='flex flex-col gap-[15px] text-sm'>
             <li>Startups</li>
             <li>Enterprise</li>
@@ -52,7 +52,7 @@ function Footer() {
           </ul>
         </div>
         <div>
-        <h3 className='mb-[20px] font-bold'>Legal</h3>
+        <h3 className='mb-[20px] font-extrabold'>Legal</h3>
           <ul className='flex flex-col gap-[15px] text-sm'>
             <li>Terms</li>
             <li>Privacy</li>
@@ -63,7 +63,7 @@ function Footer() {
           </ul>
         </div>
          <div>
-         <h3 className='mb-[20px]'>Product</h3>
+         <h3 className='mb-[20px] font-extrabold'>Product</h3>
           <ul className='flex flex-col gap-[15px] text-sm'>
             <li>Overview</li>
             <li>Features</li>

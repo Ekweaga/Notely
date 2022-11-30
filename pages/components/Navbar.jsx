@@ -21,7 +21,7 @@ function Navbar() {
                 <li>Features</li>
                 <li>About</li>
             </ul>
-            <button className='text-white bg-black p-2 rounded-md w-[120px]'>Get Started</button>
+            <button className='text-white bg-black p-2 rounded-md w-[120px]'>Login</button>
         </div>
 
         <div
@@ -34,8 +34,8 @@ function Navbar() {
         </div>
 
         <div
-          className={`md:hidden text-black absolute w-2/3 h-screen z-10
-      px-7 py-2 font-medium bg-white  top-0 duration-300 ${
+          className={`md:hidden text-black absolute w-2/3 h-screen z-[99999px]
+      px-7 py-2 font-medium bg-[#EEEE]  top-0 duration-300 ${
         open ? "left-0 block" : "left-0 hidden"
       }`}
         >
@@ -48,7 +48,7 @@ function Navbar() {
                 <li  onClick={() => setOpen(!open)}>Features</li>
                 <li  onClick={() => setOpen(!open)}></li>
                
-                <li>  <button className='text-white bg-black p-2 rounded-md w-[120px]'><Link href="signup">Get Started</Link></button></li>
+                <li>  <button className='text-white bg-black p-2 rounded-md w-[120px]'><Link href="signup">Login</Link></button></li>
           </ul>
         </div>
 

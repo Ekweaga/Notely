@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import Link from "next/link"
 
 export default function Home() {
 
@@ -40,20 +41,22 @@ export default function Home() {
       <Navbar/>
 
       <header className="flex items-center justify-center md:mt-[100px] px-3">
-        <div className='flex  justify-center md:gap-[200px] flex-col md:flex-row gap-[50px]'>
+        <div className='flex  justify-center md:gap-[0px] flex-col md:flex-row gap-[50px]'>
           <div className='md:w-[400px] mt-[80px] md:-ml-[100px]'>
             <h1 className='font-bold text-4xl mb-[30px]'>Enjoy note taking <br/>with your friends</h1>
             <p>Put down your thoughts in one app share with your friends and loved ones</p>
 
-            <div></div>
+            <div className="mt-[30px]">
+            <button className='text-white bg-black p-2 rounded-md w-[120px]'><Link href="signup">Get Started</Link></button>
+            </div>
 
           </div>
-          <div className='relative ml-[50px] '>
-            <div className="z-[20px]">
+          <div className='md:ml-[50px] z-10 flex flex-row-reverse -ml-[80px]'>
+            <div className="z-50">
             <Image src="/Rectangle.png" width={250} height={300} alt="icon" />
             </div>
-            <div className='z-[5px] absolute -left-[200px] top-[40px]'>
-            <Image src="/74499-circle 1.png" width={350} height={300} alt="icon"/>
+            <div className='z-10 w-[350px] -mr-[150px] mt-[50px]'>
+            <Image src="/74499-circle 1.svg" width={350} height={300} alt="icon"/>
             </div>
            
           </div>
