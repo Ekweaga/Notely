@@ -49,6 +49,9 @@ function Signup() {
             <div>
                 <p className='font-extrabold mt-[15px] ml-[40px]'>Already have an account? <span className='text-[#3FD088] cursor-pointer'><Link href="login">Sign in</Link></span></p>
             </div>
+            <div className='text-[#3FD088] ml-[40px] flex items-center justify-center'>
+                    <Link href="/">Go back Home</Link>
+                </div>
         </form>
     </div>
 
