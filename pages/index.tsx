@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import Link from "next/link"
 
+
 export default function Home() {
 
   interface Features{
@@ -12,6 +13,25 @@ export default function Home() {
     desc:string,
     img:any
   }
+
+  const testimonials= [
+    {
+     
+      desc:"  I use Notely for all my note taking when working on a project. I send it over to clients to crosscheck for me.",
+      img:"/image 1.png"
+    },
+
+    {
+     
+      desc:"  I use Notely for all my note taking when working on a project. I send it over to clients to crosscheck for me.",
+      img:"/image 1.png"
+    },
+    {
+     
+      desc:"  I use Notely for all my note taking when working on a project. I send it over to clients to crosscheck for me.",
+      img:"/image 1.png"
+    },
+  ]
 
   const Features:Features[] = [
     {
@@ -30,6 +50,17 @@ export default function Home() {
       img:"/Featured icon (1).png"
     },
   ]
+
+
+
+  let items = testimonials.map((item, index) => 
+ <div key={index}>
+  <p>{item.desc}</p>
+  <Image src={item.img} width={100} height={50} alt="icon"/>
+ </div>
+);
+
+
   return (
     <>
       <Head>
@@ -94,7 +125,7 @@ export default function Home() {
         <div className='flex flex-col items-center gap-[30px]'>
         <Image src="/Logomark.png" width={30} height={30} alt="icon"/>
         <div>
-          I use Notely for all my note taking when working on a project. I send it over to clients to crosscheck for me.
+       
         </div>
 
         </div>

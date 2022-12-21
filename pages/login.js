@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from "next/image"
 import Link from "next/link"
+import {AuthUser} from "../services/AuthServices/auth_service"
 
 function login() {
   return (
@@ -33,7 +34,7 @@ function login() {
                
 
                 <div>
-                    <p className='font-extrabold text-sm text-[#3FD088] float-right cursor-pointer'>Forgot Password?</p>
+                    <p className='font-extrabold text-sm text-[#3FD088] float-right cursor-pointer'><Link href="forgot">Forgot Password?</Link></p>
                 </div>
 
                 <div>
