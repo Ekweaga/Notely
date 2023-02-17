@@ -69,6 +69,9 @@ export default function Home() {
         <link rel="icon" href="/Logomark.png" />
       </Head>
 
+<div>
+
+
       <Navbar/>
 
       <header className="flex items-center justify-center md:mt-[100px] px-3">
@@ -171,7 +174,7 @@ export default function Home() {
 <div className="mt-[100px]">
 <Footer/>
 </div>
-     
+</div>
     </>
   )
 }
