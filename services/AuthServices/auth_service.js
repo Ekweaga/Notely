@@ -1,4 +1,4 @@
-import { firebaseapp } from "../../pages/components/firebase";
+import { firebaseapp } from "../../Firebase/firebase";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider} from 'firebase/auth'
 import {getAuth,signOut} from  "firebase/auth";
 import { RESPONSE_LIMIT_DEFAULT } from "next/dist/server/api-utils";

@@ -2,7 +2,7 @@ import React,{useContext, useState} from 'react'
 import Image from 'next/image'
 import Head from "next/head"
 import Link from "next/link"
-import {firebaseapp} from "./components/firebase"
+import {firebaseapp} from "../Firebase/firebase"
 import {getFirestore} from "firebase/firestore"
 import {getAuth} from  "firebase/auth";
 import {setDoc,doc} from "firebase/firestore"

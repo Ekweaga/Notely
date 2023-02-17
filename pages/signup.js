@@ -4,7 +4,7 @@ import Link from "next/link"
 import {getFirestore} from "firebase/firestore"
 import Head from 'next/head'
 import {setDoc,doc} from "firebase/firestore"
- import { firebaseapp } from "./components/firebase";
+ import { firebaseapp } from "../Firebase/firebase";
  import {useRouter} from "next/router"
  import {AuthUser} from "../services/AuthServices/auth_service"
 
