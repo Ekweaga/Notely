@@ -28,7 +28,15 @@ const auth = getAuth(firebaseapp)
     }
 
      static login = async (email,password) =>{
-        await signInWithEmailAndPassword(auth,email,password)
+
+      try{
+         await signInWithEmailAndPassword(auth,email,password)
+      }
+
+      catch{
+         
+      }
+      
     }
 
     static logout = async()=>{

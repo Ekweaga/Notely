@@ -2,7 +2,7 @@ import {collection,doc,getDoc,getDocs,orderBy,query} from "firebase/firestore"
 
 
 
-export const UserNote = async (firebaseDb,emailId)=>{
+export const UserNotes = async (firebaseDb,emailId)=>{
     const feeds =    await getDocs(query
         (collection(firestoreDb,"videos",emailId),orderBy('id','desc')));
 
@@ -11,8 +11,31 @@ export const UserNote = async (firebaseDb,emailId)=>{
 
 
 
-export const CreateNote = async (email,data)=>{
-return data
+export const CreateNote = async (email,title,note)=>{
+let data = {
+    title:title.toUpperCase(),
+    note:note
+}
+if(title == "" || note==""){
+    setError("Empty fields")
+    setLoading(false)
+}
+
+else{
+  try{
+    await updateDoc(doc(projectfirestore,"singleUser",`${email}`),{
+      saveShows:arrayUnion({
+         data
+      })
+    }).then(()=>{
+      setLoading(false)
+    })
+  }
+
+  catch{
+
+  }
+  }
 
 }
 

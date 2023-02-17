@@ -4,7 +4,7 @@ import Link from "next/link"
 import {AuthUser} from "../services/AuthServices/auth_service"
 import Head from 'next/head'
 
-function login() {
+function Login() {
   return (
     <>
 
@@ -63,4 +63,4 @@ function login() {
   )
 }
 
-export default login
+export default Login
