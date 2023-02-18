@@ -15,7 +15,7 @@ const auth = getAuth(firebaseapp)
    try{
       await createUserWithEmailAndPassword(auth,email,password).then((response)=>{
          setDoc(
-            doc(firebasedb, "specificusers",email), {
+            doc(firebasedb, "User",email), {
               savedNotes:[]
             });
     })

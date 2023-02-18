@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import Image from "next/image"
 import Link from "next/link"
 
-function Navbar() {
+function Navbar({user}) {
   const [open,setOpen] = useState(false)
   return (
     <>
@@ -21,7 +21,7 @@ function Navbar() {
                 <li>Features</li>
                 <li>About</li>
             </ul>
-            <button className='text-white bg-black p-2 rounded-md w-[120px]'>Login</button>
+            <button className='text-white bg-black p-2 rounded-md w-[120px]'>{user?(<span>Logout</span>):<span>Login</span>}</button>
         </div>
 
         <div

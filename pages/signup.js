@@ -8,6 +8,7 @@ import {setDoc,doc} from "firebase/firestore"
  import {useRouter} from "next/router"
  import {AuthUser} from "../services/AuthServices/auth_service"
 
+
 function Signup() {
 
     const [error,setError] = useState(null)
@@ -19,6 +20,7 @@ function Signup() {
     const [loading,setLoading] = useState(false)
     const router = useRouter();
     const projectfirestore = getFirestore(firebaseapp)
+ 
 
 
     const register = (e)=>{
@@ -37,8 +39,15 @@ setLoading(true)
         }
 
       else{
-        AuthUser.register().then((response)=>{
+        AuthUser.register(email,password,projectfirestore).then((response)=>{
             setLoading(false)
+            setEmail('')
+            setPassword('')
+            setName('')
+            setConfirmpwd('')
+            setTimeout(()=>{
+                router.push("/login")
+            },2500)
         })
       }
       

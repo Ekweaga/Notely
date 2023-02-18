@@ -9,13 +9,14 @@ import {setDoc,doc} from "firebase/firestore"
 import { updateDoc,arrayUnion, onSnapshot } from "firebase/firestore"; 
 import { AuthContext, AuthProvider } from '../services/Context/context'
 
+
 function Create() {
   const [title,setTitle] = useState('')
   const [notes,setNotes] = useState('')
   const [error,setError] = useState('')
   const [loading,setLoading] = useState(false);
   const projectfirestore = getFirestore(firebaseapp)
-  const {user} = useContext(AuthContext)
+  const {user,mode,setMode} = useContext(AuthContext)
 
   const create = async ()=>{
     setLoading(true)
@@ -26,8 +27,8 @@ function Create() {
 
       else{
         try{
-          await updateDoc(doc(projectfirestore,"singleUser",`${user?.email}`),{
-            saveShows:arrayUnion({
+          await updateDoc(doc(projectfirestore,"User",`${user?.email}`),{
+            savedNotes:arrayUnion({
                 title:title.toUpperCase(),
                 note:notes
             })

@@ -1,10 +1,59 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Image from "next/image"
 import Link from "next/link"
-import {AuthUser} from "../services/AuthServices/auth_service"
+import {getFirestore} from "firebase/firestore"
 import Head from 'next/head'
+import {setDoc,doc} from "firebase/firestore"
+ import { firebaseapp } from "../Firebase/firebase";
+ import {useRouter} from "next/router"
+ import {AuthUser} from "../services/AuthServices/auth_service"
 
 function Login() {
+    const [error,setError] = useState(null)
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
+    const [confirmpwd,setConfirmpwd] = useState('')
+    const [success,setSuccess] = useState(null)
+    const [name,setName] = useState('')
+    const [loading,setLoading] = useState(false)
+    const router = useRouter();
+    const projectfirestore = getFirestore(firebaseapp)
+
+
+    const submit = async(e)=>{
+        e.preventDefault();     
+        setLoading(true)
+                if(email == "" || password == ""){
+                    setError("EMpty fields")
+                   
+                    setLoading(false)
+                }
+        
+        
+              else{
+                try{
+                    AuthUser.login(email,password).then((response)=>{
+                        setLoading(false)
+                        setEmail('')
+                        setPassword('')
+                        setName('')
+                        setConfirmpwd('')
+                        setTimeout(()=>{
+                            router.push("/")
+                        },2500)
+                    })
+                  }
+
+                   catch(err){
+                        setError(err.message)
+                }
+
+
+                }
+
+               
+              
+    }
   return (
     <>
 
@@ -25,17 +74,17 @@ function Login() {
         <div className='flex flex-col items-center justify-center p-4 -mt-[30px]' style={{zIndex:3}}>
             <h1 className='font-bold text-2xl mb-[20px] text-center'>Welcome Back!</h1>
             <Image src="/undraw_access_account_re_8spm 1.svg" width={150} height={100} alt="icon"/>
-            <form className='mt-[30px] flex flex-col  gap-[10px]'>
+            <form className='mt-[30px] flex flex-col  gap-[10px]' onSubmit={submit}>
           
 
                 <div>
                     <label className='font-extrabold text-sm'>Email</label>
-                    <div className='bg-white w-[350px] rounded-full  flex items-center px-2'><input type="email" placeholder="info@gmail.com" className='h-[50px] bg-transparent p-2 focus:outline-none'/></div>
+                    <div className='bg-white w-[350px] rounded-full  flex items-center px-2'><input type="email" placeholder="info@gmail.com" className='h-[50px] bg-transparent p-2 focus:outline-none' onChange={(e)=>setEmail(e.target.value)} value={email}/></div>
                 </div>
 
                 <div>
                     <label className='font-extrabold text-sm'>Password</label>
-                    <div className='bg-white w-[350px] rounded-full flex items-center px-2 '><input type="email" placeholder="xxxxxxxxxxx" className=' h-[50px] bg-transparent p-2 focus:outline-none'/></div>
+                    <div className='bg-white w-[350px] rounded-full flex items-center px-2 '><input type="password" placeholder="xxxxxxxxxxx" className=' h-[50px] bg-transparent p-2 focus:outline-none' onChange={(e)=>setPassword(e.target.value)} value={password}/></div>
                 </div>
 
                
