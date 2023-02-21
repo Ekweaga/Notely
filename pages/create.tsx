@@ -9,6 +9,8 @@ import {setDoc,doc} from "firebase/firestore"
 import { updateDoc,arrayUnion, onSnapshot } from "firebase/firestore"; 
 import { AuthContext, AuthProvider } from '../services/Context/context'
 
+import { useRouter } from 'next/router'
+
 
 function Create() {
   const [title,setTitle] = useState('')
@@ -17,6 +19,7 @@ function Create() {
   const [loading,setLoading] = useState(false);
   const projectfirestore = getFirestore(firebaseapp)
   const {user,mode,setMode} = useContext(AuthContext)
+  const router = useRouter()
 
   const create = async ()=>{
     setLoading(true)
@@ -33,7 +36,10 @@ function Create() {
                 note:notes
             })
           }).then(()=>{
-            setLoading(false)
+            setLoading(false);
+            setTimeout(()=>{
+              router.push('/notes')
+            },2000)
           })
         }
 
@@ -64,7 +70,7 @@ function Create() {
       </div>
 
       <div>
-                    <button className='text-black bg-[#3FD088] w-[350px] h-[50px] p-2  text-1xl font-black rounded-md mt-[20px]' onClick={create}>Save note</button>
+                    <button className='text-black bg-[#3FD088] w-[350px] h-[50px] p-2  text-1xl font-black rounded-md mt-[20px]' onClick={create}>{loading?<p>Saving....</p>:<p>Save note</p>}</button>
                 </div>
     </div>
     

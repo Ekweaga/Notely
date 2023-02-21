@@ -1,12 +1,14 @@
-import {collection,doc,getDoc,getDocs,orderBy,query} from "firebase/firestore"
+import {collection,doc,getDoc,getDocs,orderBy,query,onSnapshot} from "firebase/firestore"
 
 
 
-export const UserNotes = async (firebaseDb,emailId)=>{
-    const feeds =    await getDocs(query
-        (collection(firestoreDb,"videos",emailId),orderBy('id','desc')));
-
-        return feeds.docs.map(doc=>doc.data())
+export const UserNotes =  (firebaseDb,emailId)=>{
+onSnapshot(doc(firebaseDb, "User", emailId), (doc) => {
+    
+     
+    return(doc.data()?.savedNotes)
+  
+});
 }
 
 
