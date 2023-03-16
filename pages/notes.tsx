@@ -1,4 +1,4 @@
-import React,{useState,useEffect, useContext} from 'react'
+import React,{useState,useEffect, useContext, useCallback} from 'react'
 import Image from 'next/image'
 import Head from "next/head"
 import Link from "next/link"
@@ -39,9 +39,9 @@ function Notes() {
 
   }
 
-  const getNotes = async()=>{
+  const getNotes =useCallback(()=>{
     try{
-await onSnapshot(doc(projectfirestore, "User", `${user?.email}`), (doc) => {
+ onSnapshot(doc(projectfirestore, "User", `${user?.email}`), (doc) => {
     
      setLoading(false)
       setNotes(doc.data()?.savedNotes)
@@ -52,7 +52,7 @@ await onSnapshot(doc(projectfirestore, "User", `${user?.email}`), (doc) => {
     console.log(err.message)
   }
 
-  }
+  },user?.email)
 
  
   
@@ -64,7 +64,7 @@ await onSnapshot(doc(projectfirestore, "User", `${user?.email}`), (doc) => {
     
    
   
-  },[user?.email])
+  },[getNotes,user?.email])
 
   
 
@@ -92,9 +92,9 @@ await onSnapshot(doc(projectfirestore, "User", `${user?.email}`), (doc) => {
 
   { !loading ? <div>
     {
-       notes.map((note:Note)=>{
+       notes.map((note:Note,index:number)=>{
       return(
-       <div className='bg-[#A692F9] text-white p-2 rounded-2xl'>
+       <div className='bg-[#A692F9] text-white p-2 rounded-2xl' key={index}>
          <h1>{note?.title}</h1>
          <div>
          <p>{note?.note}</p> <MdOutlineAutoDelete onClick={()=>deletemovie(note.title)}/></div>
