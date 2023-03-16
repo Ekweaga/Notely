@@ -5,9 +5,14 @@ import Link from "next/link"
 import {UserNotes} from "../services/FetchData/firestore"
 import { AuthContext, AuthProvider } from '../services/Context/context'
 import {getFirestore} from "firebase/firestore"
-import {setDoc,doc,onSnapshot} from "firebase/firestore"
+import {setDoc,doc,onSnapshot,updateDoc} from "firebase/firestore"
  import { firebaseapp } from "../Firebase/firebase";
+ import {RiDeleteBinLine} from "react-icons/ri"
+ import {MdOutlineAutoDelete} from "react-icons/md"
+ import {AiOutlineShareAlt} from "react-icons/ai"
 
+ import {getAuth} from  "firebase/auth";
+ 
 
 function Notes() {
 
@@ -16,23 +21,54 @@ function Notes() {
     note:string
   }
   const [notes,setNotes] = useState<Array<Note>>([])
+  const [loading,setLoading] = useState(false)
 
   const projectfirestore = getFirestore(firebaseapp)
 
   const {user} = useContext(AuthContext)
+
+  const deletemovie = async (title:string)=>{
+    const results = notes.filter((item:Note)=>item.title !== title)
+
+   
+
+    await updateDoc(doc(projectfirestore, "User", `${user?.email}`),{
+      savedNotes:results
+    })
+
+
+  }
+
+  const getNotes = async()=>{
+    try{
+await onSnapshot(doc(projectfirestore, "User", `${user?.email}`), (doc) => {
+    
+     setLoading(false)
+      setNotes(doc.data()?.savedNotes)
+    
+  });
+    } 
+   catch(err:any){
+    console.log(err.message)
+  }
+
+  }
+
+ 
   
 
 
   useEffect(()=>{
-
+    setLoading(true)
+     getNotes()
+    
    
-    onSnapshot(doc(projectfirestore, "User", `${user?.email}`), (doc) => {
-    
-     
-      setNotes(doc.data()?.savedNotes)
-    
-  });
+  
   },[user?.email])
+
+  
+
+  
   return (
    <>
     <Head>
@@ -54,15 +90,20 @@ function Notes() {
       <br/><br/>
 <div className='grid-cols-2 grid gap-[20px]'>
 
-  {
-    notes.map((note:Note)=>{
+  { !loading ? <div>
+    {
+       notes.map((note:Note)=>{
       return(
        <div className='bg-[#A692F9] text-white p-2 rounded-2xl'>
-         <h1>{note.title}</h1>
-         <p>{note.note}</p>
+         <h1>{note?.title}</h1>
+         <div>
+         <p>{note?.note}</p> <MdOutlineAutoDelete onClick={()=>deletemovie(note.title)}/></div>
          </div>
       )
     })
+    }
+  </div>: (<div><p>Fetching Notes... Pls wait</p></div>)
+   
   }
  
   

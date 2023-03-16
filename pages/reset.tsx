@@ -1,8 +1,23 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Link from "next/link"
 import Head from 'next/head'
+import { sendPasswordResetEmail,confirmPasswordReset,getAuth } from 'firebase/auth'
+import { firebaseapp } from "../Firebase/firebase"
 
 function Reset() {
+  const [email,setEmail] = useState('')
+      const auth = getAuth(firebaseapp)
+      const [message,setMessage] = useState('')
+      const[error,setError] = useState('')
+
+  const sendPasswordResetEmail:any  = async(e:any)=>{
+    e.preventDefault();
+      return await sendPasswordResetEmail(auth,email).then(()=>{
+        setMessage("Check your email for reset link")
+      }).catch((err:any)=>{
+          setError(err.message)
+      })
+  }
   return (
 <>
     <Head>
@@ -25,7 +40,10 @@ function Reset() {
           </div>
 
           <div>
-                    <button className='text-black bg-[#3FD088] w-[280px] p-2  text-1xl font-black rounded-md mt-[20px]'>Send</button>
+                    <button className='text-black bg-[#3FD088] w-[280px] p-2  text-1xl font-black rounded-md mt-[20px]' onClick={sendPasswordResetEmail}>Send</button>
+                </div>
+                <div>
+                  {message !== "" ?<p>{message}</p>:null}
                 </div>
                
 

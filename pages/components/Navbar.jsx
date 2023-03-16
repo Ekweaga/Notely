@@ -1,12 +1,13 @@
 import React,{useState} from 'react'
 import Image from "next/image"
 import Link from "next/link"
+import { signOut } from 'firebase/auth'
 
 function Navbar({user}) {
   const [open,setOpen] = useState(false)
   return (
     <>
-    <nav className='flex md:justify-around p-4 h-[100px] items-center justify-between px-4 '>
+    <nav className='flex md:justify-around p-2 md:h-[100px] items-center justify-between px-4 shadow md:shadow-none bg-white' style={{position:'sticky', top:0,left:0,right:0,zIndex:333}}>
         <div className='flex gap-[10px]'>
            <div>
            <Image src="/Logomark.png" width={30} height={30} alt="icon"/>
@@ -30,15 +31,19 @@ function Navbar({user}) {
             open ? "text-gray-900" : ""
           } text-3xl md:hidden `}
         >
-          <Image src={open ? "/icon-close.svg" :"/icon-hamburger.svg"} alt="icon" width={20} height={15}></Image>
+          <Image src={open ? "/icon-close.svg" :"/icon-hamburger.svg"} alt="icon" width={30} height={25}></Image>
         </div>
 
         <div
-          className={`md:hidden text-black absolute w-2/3 h-screen z-[99999px]
+          className={`md:hidden text-black absolute w-2/3 h-[100vh] z-[99999px]
       px-7 py-2 font-medium bg-[#EEEE]  top-0 duration-300 ${
-        open ? "left-0 block" : "left-0 hidden"
-      }`}
+        open ? "right-0 block" : "left-0 hidden"
+      }`} style={{zIndex:3333}}
         >
+          <div className="absolute right-[20px] top-[20px]">
+          <Image src= "/icon-close.svg" alt="icon" width={20} height={25} onClick={() => setOpen(!open)}></Image>
+          </div>
+         
           <ul className="flex flex-col justify-center h-[300px] gap-10 py-2 text-lg mt-[100px]">
           <li  onClick={() => setOpen(!open)}><Link href="/">Home</Link></li>
           <li className="cursor-pointer" >

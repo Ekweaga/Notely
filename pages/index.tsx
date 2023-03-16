@@ -129,8 +129,9 @@ export default function Home() {
 
       <div className='bg-black h-[400px] flex items-center justify-center text-white'>
 
-        <div className='flex flex-col items-center gap-[30px]'>
-        <Image src="/Logomark.png" width={30} height={30} alt="icon"/>
+        <div className='flex flex-col items-center gap-[30px] p-2'>
+        <Image src="/Logomark.png" width={60} height={30} alt="icon"/>
+        <div><p className="text-center">Notes taking ever made easier and simpler with notely!</p></div>
         <div>
        
         </div>
